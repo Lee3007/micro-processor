@@ -1,0 +1,7 @@
+v 4
+file . "soma_e_subtrai_tb.vhd" "e0148de976ea7d6f0451b593617343a3fb2b47e3" "20230331191040.293":
+  entity soma_e_subtrai_tb at 1( 0) + 0 on 21;
+  architecture a_soma_e_subtrai_tb of soma_e_subtrai_tb at 8( 104) + 0 on 22;
+file . "soma_e_subtrai.vhd" "f5050b397cecaa05f8705cded5b0d0f8532a57c2" "20230331191025.220":
+  entity soma_e_subtrai at 1( 0) + 0 on 19;
+  architecture a_soma_e_subtrai of soma_e_subtrai at 12( 220) + 0 on 20;

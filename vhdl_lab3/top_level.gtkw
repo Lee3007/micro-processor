@@ -1,0 +1,44 @@
+[*]
+[*] GTKWave Analyzer v3.3.104 (w)1999-2020 BSI
+[*] Wed Apr 19 15:09:57 2023
+[*]
+[dumpfile] "/home/r3solv/Documents/UTFPR/ArqOrgComp/vhdl_lab3/top_level.ghw"
+[dumpfile_mtime] "Wed Apr 19 14:57:00 2023"
+[dumpfile_size] 4681
+[savefile] "/home/r3solv/Documents/UTFPR/ArqOrgComp/vhdl_lab3/top_level.gtkw"
+[timestart] 0
+[size] 1920 1026
+[pos] -1 -1
+*-27.078268 2100000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] top.
+[treeopen] top.top_level_tb.
+[sst_width] 212
+[signals_width] 179
+[sst_expanded] 1
+[sst_vpaned_height] 297
+@28
+top.top_level_tb.clk
+top.top_level_tb.write_enable
+@24
+[color] 7
+#{top.top_level_tb.out_sel_a[2:0]} top.top_level_tb.out_sel_a[2] top.top_level_tb.out_sel_a[1] top.top_level_tb.out_sel_a[0]
+[color] 7
+#{top.top_level_tb.out_a[15:0]} top.top_level_tb.out_a[15] top.top_level_tb.out_a[14] top.top_level_tb.out_a[13] top.top_level_tb.out_a[12] top.top_level_tb.out_a[11] top.top_level_tb.out_a[10] top.top_level_tb.out_a[9] top.top_level_tb.out_a[8] top.top_level_tb.out_a[7] top.top_level_tb.out_a[6] top.top_level_tb.out_a[5] top.top_level_tb.out_a[4] top.top_level_tb.out_a[3] top.top_level_tb.out_a[2] top.top_level_tb.out_a[1] top.top_level_tb.out_a[0]
+[color] 2
+#{top.top_level_tb.out_sel_b[2:0]} top.top_level_tb.out_sel_b[2] top.top_level_tb.out_sel_b[1] top.top_level_tb.out_sel_b[0]
+[color] 2
+#{top.top_level_tb.out_b[15:0]} top.top_level_tb.out_b[15] top.top_level_tb.out_b[14] top.top_level_tb.out_b[13] top.top_level_tb.out_b[12] top.top_level_tb.out_b[11] top.top_level_tb.out_b[10] top.top_level_tb.out_b[9] top.top_level_tb.out_b[8] top.top_level_tb.out_b[7] top.top_level_tb.out_b[6] top.top_level_tb.out_b[5] top.top_level_tb.out_b[4] top.top_level_tb.out_b[3] top.top_level_tb.out_b[2] top.top_level_tb.out_b[1] top.top_level_tb.out_b[0]
+#{top.top_level_tb.write_sel[2:0]} top.top_level_tb.write_sel[2] top.top_level_tb.write_sel[1] top.top_level_tb.write_sel[0]
+@29
+[color] 3
+#{top.top_level_tb.sel_op[1:0]} top.top_level_tb.sel_op[1] top.top_level_tb.sel_op[0]
+@24
+[color] 3
+#{top.top_level_tb.ula_out[15:0]} top.top_level_tb.ula_out[15] top.top_level_tb.ula_out[14] top.top_level_tb.ula_out[13] top.top_level_tb.ula_out[12] top.top_level_tb.ula_out[11] top.top_level_tb.ula_out[10] top.top_level_tb.ula_out[9] top.top_level_tb.ula_out[8] top.top_level_tb.ula_out[7] top.top_level_tb.ula_out[6] top.top_level_tb.ula_out[5] top.top_level_tb.ula_out[4] top.top_level_tb.ula_out[3] top.top_level_tb.ula_out[2] top.top_level_tb.ula_out[1] top.top_level_tb.ula_out[0]
+#{top.top_level_tb.data_in[15:0]} top.top_level_tb.data_in[15] top.top_level_tb.data_in[14] top.top_level_tb.data_in[13] top.top_level_tb.data_in[12] top.top_level_tb.data_in[11] top.top_level_tb.data_in[10] top.top_level_tb.data_in[9] top.top_level_tb.data_in[8] top.top_level_tb.data_in[7] top.top_level_tb.data_in[6] top.top_level_tb.data_in[5] top.top_level_tb.data_in[4] top.top_level_tb.data_in[3] top.top_level_tb.data_in[2] top.top_level_tb.data_in[1] top.top_level_tb.data_in[0]
+@28
+top.top_level_tb.rst
+top.top_level_tb.carry
+top.top_level_tb.zero
+[pattern_trace] 1
+[pattern_trace] 0
