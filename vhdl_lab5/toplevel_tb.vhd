@@ -34,7 +34,7 @@ architecture toplevel_tb_a of toplevel_tb is
     component rom is
         port (
             clk: in std_logic;
-            endereco: in unsigned(15 downto 0);
+            endereco: in unsigned(6 downto 0);
             dado: out unsigned(15 downto 0)
         );
     end component;
@@ -68,7 +68,6 @@ architecture toplevel_tb_a of toplevel_tb is
         );
 
         uut3: rom port map(
-            clk => clk_s,
             endereco => pc_out_s,
             dado => instruction_in_s
         );

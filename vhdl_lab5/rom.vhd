@@ -4,8 +4,7 @@ use ieee.numeric_std.all;
 
 entity rom is
     port (
-        clk: in std_logic;
-        endereco: in unsigned(6 downto 0); --65536 end de mem
+        endereco: in unsigned(7 downto 0);
         dado: out unsigned(15 downto 0)
     );
 end entity;
@@ -27,13 +26,8 @@ architecture a_rom of rom is
         9 => X"0000",
         10 => X"0000",
     others => (others=>'0'));
-
+    
     begin
-        process(clk)
-        begin
-            if(rising_edge(clk)) then
-                dado <= conteudo_rom(to_integer(endereco));
-            end if;
-        end process;
-
+        dado <= conteudo_rom(to_integer(endereco));
+        
 end architecture;
