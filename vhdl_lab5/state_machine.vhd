@@ -11,22 +11,22 @@ end entity;
 
 architecture a_state_machine of state_machine is
 
-    signal estado_s: unsigned(1 downto 0);
+    signal state_s: unsigned(1 downto 0);
     
     begin
         process(clk,rst)
         begin
             if rst='1' then
-                estado_s <= "00";
+                state_s <= "00";
             elsif rising_edge(clk) then
-                if estado_s="10" then -- se agora esta em 2
-                    estado_s <= "00"; -- o prox vai voltar ao zero
+                if state_s="10" then -- se agora esta em 2
+                    state_s <= "00"; -- o prox vai voltar ao zero
                 else
-                    estado_s <= estado_s+1; -- senao avanca
+                    state_s <= state_s+1; -- senao avanca
                 end if;
             end if;
         end process;
 
-    estado <= estado_s;
+    state <= state_s;
 
 end architecture;

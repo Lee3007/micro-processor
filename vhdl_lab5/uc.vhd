@@ -18,8 +18,8 @@ entity uc is
         sel_out_b: out unsigned(2 downto 0);
         sel_write: out unsigned(2 downto 0);
         imm_in: out unsigned(7 downto 0);
-        reg_or_imm: out std_logic
-        sel_op: out unsigned(1 downto 0);
+        reg_or_imm: out std_logic;
+        sel_op: out unsigned(1 downto 0)
     );
 end entity;
 
@@ -42,12 +42,15 @@ architecture a_uc of uc is
             state => state_s
         );
 
-        opcode <= instruction_in(15 downto 11);
+        opcode_s <= instruction_in(15 downto 11);
 
-        case opcode is
+        process(clk, rst)
+        begin
+
+        case opcode_s is
         when "00000" =>     --NOP
             case state_s is
-            when "01"       --DECODE
+            when "01" =>    --DECODE
                 inst_reg_wr_en <= '0';
                 pc_wr_en <= '0';
                 banco_regs_wr_en <= '0';
@@ -58,7 +61,7 @@ architecture a_uc of uc is
                 imm_in <= X"00";
                 reg_or_imm <= '0';
                 sel_op <= "00";
-            when "10"       --EXECUTE
+            when "10" =>    --EXECUTE
                 inst_reg_wr_en <= '0';
                 pc_wr_en <= '0';
                 banco_regs_wr_en <= '0';
@@ -80,10 +83,13 @@ architecture a_uc of uc is
                 imm_in <= X"00";
                 reg_or_imm <= '0';
                 sel_op <= "00";
+            when others =>                             
+            
+            end case;
 
         when "00001" =>     --MOV REG REG
             case state_s is
-            when "01"       --DECODE
+            when "01" =>       --DECODE
                 inst_reg_wr_en <= '0';
                 pc_wr_en <= '0';
                 banco_regs_wr_en <= '0';
@@ -94,7 +100,7 @@ architecture a_uc of uc is
                 imm_in <= X"00";
                 reg_or_imm <= '0';
                 sel_op <= "00"; --selecting addition
-            when "10"       --EXECUTE
+            when "10" =>       --EXECUTE
                 inst_reg_wr_en <= '0';
                 pc_wr_en <= '0';
                 banco_regs_wr_en <= '1';
@@ -116,10 +122,22 @@ architecture a_uc of uc is
                 imm_in <= X"00";
                 reg_or_imm <= '0';
                 sel_op <= "00";
-                
+            when others => 
+                inst_reg_wr_en <= '0';
+                pc_wr_en <= '0';
+                banco_regs_wr_en <= '0';
+                pc_override <= '0';
+                sel_out_a <= "000";
+                sel_out_b <= "000";
+                sel_write <= "000";
+                imm_in <= X"00";
+                reg_or_imm <= '0';
+                sel_op <= "00";
+            end case;
+
         when "00010" =>     --MOV REG IMM
             case state_s is
-            when "01"       --DECODE
+            when "01" =>       --DECODE
                 inst_reg_wr_en <= '0';
                 pc_wr_en <= '0';
                 banco_regs_wr_en <= '0';
@@ -130,7 +148,7 @@ architecture a_uc of uc is
                 imm_in <= X"00";
                 reg_or_imm <= '0';
                 sel_op <= "00"; --selecting addition
-            when "10"       --EXECUTE
+            when "10" =>       --EXECUTE
                 inst_reg_wr_en <= '0';
                 pc_wr_en <= '0';
                 banco_regs_wr_en <= '1';
@@ -139,7 +157,7 @@ architecture a_uc of uc is
                 sel_out_b <= "000";
                 sel_write <= instruction_in(10 downto 8);   --sel reg dst
                 imm_in <= instruction_in(7 downto 0);
-                reg_or_imm <= '1';  --adding with 0
+                reg_or_imm <= '1';
                 sel_op <= "00";
             when "00" =>    --FETCH
                 inst_reg_wr_en <= '1';
@@ -152,17 +170,408 @@ architecture a_uc of uc is
                 imm_in <= X"00";
                 reg_or_imm <= '0';
                 sel_op <= "00";
+                when others => 
+                inst_reg_wr_en <= '0';
+                pc_wr_en <= '0';
+                banco_regs_wr_en <= '0';
+                pc_override <= '0';
+                sel_out_a <= "000";
+                sel_out_b <= "000";
+                sel_write <= "000";
+                imm_in <= X"00";
+                reg_or_imm <= '0';
+                sel_op <= "00";
+            end case;
 
+        when "00011" =>     --MOV A IMM
+            case state_s is
+            when "01" =>       --DECODE
+                inst_reg_wr_en <= '0';
+                pc_wr_en <= '0';
+                banco_regs_wr_en <= '0';
+                pc_override <= '0';
+                sel_out_a <= "000";
+                sel_out_b <= "000";
+                sel_write <= "000";
+                imm_in <= X"00";
+                reg_or_imm <= '0';
+                sel_op <= "00"; 
+            when "10" =>       --EXECUTE
+                inst_reg_wr_en <= '0';
+                pc_wr_en <= '0';
+                banco_regs_wr_en <= '1';
+                pc_override <= '0';
+                sel_out_a <= "000";
+                sel_out_b <= "000";
+                sel_write <= "001";   --selecting Accumulator (reg 001) (for now)
+                imm_in <= instruction_in(7 downto 0);
+                reg_or_imm <= '1';
+                sel_op <= "00";
+            when "00" =>    --FETCH
+                inst_reg_wr_en <= '1';
+                pc_wr_en <= '1';
+                banco_regs_wr_en <= '0';
+                pc_override <= '0';
+                sel_out_a <= "000";
+                sel_out_b <= "000";
+                sel_write <= "000";
+                imm_in <= X"00";
+                reg_or_imm <= '0';
+                sel_op <= "00";
+                when others => 
+                inst_reg_wr_en <= '0';
+                pc_wr_en <= '0';
+                banco_regs_wr_en <= '0';
+                pc_override <= '0';
+                sel_out_a <= "000";
+                sel_out_b <= "000";
+                sel_write <= "000";
+                imm_in <= X"00";
+                reg_or_imm <= '0';
+                sel_op <= "00";
+            end case;
+                
+        when "00100" =>     --MOV A REG
+            case state_s is
+            when "01" =>       --DECODE
+                inst_reg_wr_en <= '0';
+                pc_wr_en <= '0';
+                banco_regs_wr_en <= '0';
+                pc_override <= '0';
+                sel_out_a <= instruction_in(10 downto 8);
+                sel_out_b <= "000";
+                sel_write <= "000";
+                imm_in <= X"00";
+                reg_or_imm <= '0';
+                sel_op <= "00"; 
+            when "10" =>       --EXECUTE
+                inst_reg_wr_en <= '0';
+                pc_wr_en <= '0';
+                banco_regs_wr_en <= '1';
+                pc_override <= '0';
+                sel_out_a <= "000";
+                sel_out_b <= "000";
+                sel_write <= "001";   --selecting Accumulator (reg 001) (for now)
+                imm_in <= X"00";
+                reg_or_imm <= '1';
+                sel_op <= "00";
+            when "00" =>    --FETCH
+                inst_reg_wr_en <= '1';
+                pc_wr_en <= '1';
+                banco_regs_wr_en <= '0';
+                pc_override <= '0';
+                sel_out_a <= "000";
+                sel_out_b <= "000";
+                sel_write <= "000";
+                imm_in <= X"00";
+                reg_or_imm <= '0';
+                sel_op <= "00";
+                when others => 
+                inst_reg_wr_en <= '0';
+                pc_wr_en <= '0';
+                banco_regs_wr_en <= '0';
+                pc_override <= '0';
+                sel_out_a <= "000";
+                sel_out_b <= "000";
+                sel_write <= "000";
+                imm_in <= X"00";
+                reg_or_imm <= '0';
+                sel_op <= "00";
+            end case;
+                
+        when "00101" =>     --ADD A REG
+            case state_s is
+            when "01" =>       --DECODE
+                inst_reg_wr_en <= '0';
+                pc_wr_en <= '0';
+                banco_regs_wr_en <= '0';
+                pc_override <= '0';
+                sel_out_a <= "001"; --ACC
+                sel_out_b <= instruction_in(10 downto 8);
+                sel_write <= "000";
+                imm_in <= X"00";
+                reg_or_imm <= '0';
+                sel_op <= "00"; 
+            when "10" =>       --EXECUTE
+                inst_reg_wr_en <= '0';
+                pc_wr_en <= '0';
+                banco_regs_wr_en <= '1';
+                pc_override <= '0';
+                sel_out_a <= "000";
+                sel_out_b <= "000";
+                sel_write <= "001";
+                imm_in <= X"00";
+                reg_or_imm <= '0';
+                sel_op <= "00";
+            when "00" =>    --FETCH
+                inst_reg_wr_en <= '1';
+                pc_wr_en <= '1';
+                banco_regs_wr_en <= '0';
+                pc_override <= '0';
+                sel_out_a <= "000";
+                sel_out_b <= "000";
+                sel_write <= "000";
+                imm_in <= X"00";
+                reg_or_imm <= '0';
+                sel_op <= "00";
+                when others => 
+                inst_reg_wr_en <= '0';
+                pc_wr_en <= '0';
+                banco_regs_wr_en <= '0';
+                pc_override <= '0';
+                sel_out_a <= "000";
+                sel_out_b <= "000";
+                sel_write <= "000";
+                imm_in <= X"00";
+                reg_or_imm <= '0';
+                sel_op <= "00";
+            end case;
 
+        when "00110" =>     --ADD A IMM
+            case state_s is
+            when "01" =>       --DECODE
+                inst_reg_wr_en <= '0';
+                pc_wr_en <= '0';
+                banco_regs_wr_en <= '0';
+                pc_override <= '0';
+                sel_out_a <= "001"; --ACC
+                sel_out_b <= "000";
+                sel_write <= "000";
+                imm_in <= X"00";
+                reg_or_imm <= '0';
+                sel_op <= "00"; 
+            when "10" =>       --EXECUTE
+                inst_reg_wr_en <= '0';
+                pc_wr_en <= '0';
+                banco_regs_wr_en <= '1';
+                pc_override <= '0';
+                sel_out_a <= "000";
+                sel_out_b <= "000";
+                sel_write <= "001";
+                imm_in <= instruction_in(7 downto 0);
+                reg_or_imm <= '1';
+                sel_op <= "00";
+            when "00" =>    --FETCH
+                inst_reg_wr_en <= '1';
+                pc_wr_en <= '1';
+                banco_regs_wr_en <= '0';
+                pc_override <= '0';
+                sel_out_a <= "000";
+                sel_out_b <= "000";
+                sel_write <= "000";
+                imm_in <= X"00";
+                reg_or_imm <= '0';
+                sel_op <= "00";
+                when others => 
+                inst_reg_wr_en <= '0';
+                pc_wr_en <= '0';
+                banco_regs_wr_en <= '0';
+                pc_override <= '0';
+                sel_out_a <= "000";
+                sel_out_b <= "000";
+                sel_write <= "000";
+                imm_in <= X"00";
+                reg_or_imm <= '0';
+                sel_op <= "00";
+            end case;
 
+        when "00111" =>     --SUBB A REG
+            case state_s is
+            when "01" =>       --DECODE
+                inst_reg_wr_en <= '0';
+                pc_wr_en <= '0';
+                banco_regs_wr_en <= '0';
+                pc_override <= '0';
+                sel_out_a <= "001"; --ACC
+                sel_out_b <= instruction_in(10 downto 8);
+                sel_write <= "000";
+                imm_in <= X"00";
+                reg_or_imm <= '0';
+                sel_op <= "00"; 
+            when "10" =>       --EXECUTE
+                inst_reg_wr_en <= '0';
+                pc_wr_en <= '0';
+                banco_regs_wr_en <= '1';
+                pc_override <= '0';
+                sel_out_a <= "000";
+                sel_out_b <= "000";
+                sel_write <= "001";
+                imm_in <= X"00";
+                reg_or_imm <= '0';
+                sel_op <= "01";
+            when "00" =>    --FETCH
+                inst_reg_wr_en <= '1';
+                pc_wr_en <= '1';
+                banco_regs_wr_en <= '0';
+                pc_override <= '0';
+                sel_out_a <= "000";
+                sel_out_b <= "000";
+                sel_write <= "000";
+                imm_in <= X"00";
+                reg_or_imm <= '0';
+                sel_op <= "00";
+                when others => 
+                inst_reg_wr_en <= '0';
+                pc_wr_en <= '0';
+                banco_regs_wr_en <= '0';
+                pc_override <= '0';
+                sel_out_a <= "000";
+                sel_out_b <= "000";
+                sel_write <= "000";
+                imm_in <= X"00";
+                reg_or_imm <= '0';
+                sel_op <= "00";
+            end case;
 
+        when "01000" =>     --SUBB A IMM
+            case state_s is
+            when "01" =>       --DECODE
+                inst_reg_wr_en <= '0';
+                pc_wr_en <= '0';
+                banco_regs_wr_en <= '0';
+                pc_override <= '0';
+                sel_out_a <= "001"; --ACC
+                sel_out_b <= "000";
+                sel_write <= "000";
+                imm_in <= X"00";
+                reg_or_imm <= '0';
+                sel_op <= "00"; 
+            when "10" =>       --EXECUTE
+                inst_reg_wr_en <= '0';
+                pc_wr_en <= '0';
+                banco_regs_wr_en <= '1';
+                pc_override <= '0';
+                sel_out_a <= "000";
+                sel_out_b <= "000";
+                sel_write <= "001";
+                imm_in <= instruction_in(7 downto 0);
+                reg_or_imm <= '1';
+                sel_op <= "01";
+            when "00" =>    --FETCH
+                inst_reg_wr_en <= '1';
+                pc_wr_en <= '1';
+                banco_regs_wr_en <= '0';
+                pc_override <= '0';
+                sel_out_a <= "000";
+                sel_out_b <= "000";
+                sel_write <= "000";
+                imm_in <= X"00";
+                reg_or_imm <= '0';
+                sel_op <= "00";
+            when others => 
+                inst_reg_wr_en <= '0';
+                pc_wr_en <= '0';
+                banco_regs_wr_en <= '0';
+                pc_override <= '0';
+                sel_out_a <= "000";
+                sel_out_b <= "000";
+                sel_write <= "000";
+                imm_in <= X"00";
+                reg_or_imm <= '0';
+                sel_op <= "00";
+            end case;
 
+        when "01001" =>     --JUMP IMM
+            case state_s is
+            when "01" =>       --DECODE
+                inst_reg_wr_en <= '0';
+                pc_wr_en <= '1';
+                banco_regs_wr_en <= '0';
+                pc_override <= '1';
+                sel_out_a <= "000";
+                sel_out_b <= "000";
+                sel_write <= "000";
+                imm_in <= X"00";
+                reg_or_imm <= '0';
+                sel_op <= "00"; 
+            when "10" =>       --EXECUTE
+                inst_reg_wr_en <= '0';
+                pc_wr_en <= '0';
+                banco_regs_wr_en <= '0';
+                pc_override <= '0';
+                sel_out_a <= "000";
+                sel_out_b <= "000";
+                sel_write <= "000";
+                imm_in <= X"00";
+                reg_or_imm <= '0';
+                sel_op <= "00";
+            when "00" =>    --FETCH
+                inst_reg_wr_en <= '1';
+                pc_wr_en <= '1';
+                banco_regs_wr_en <= '0';
+                pc_override <= '0';
+                sel_out_a <= "000";
+                sel_out_b <= "000";
+                sel_write <= "000";
+                imm_in <= X"00";
+                reg_or_imm <= '0';
+                sel_op <= "00";
+            when others => 
+                inst_reg_wr_en <= '0';
+                pc_wr_en <= '0';
+                banco_regs_wr_en <= '0';
+                pc_override <= '0';
+                sel_out_a <= "000";
+                sel_out_b <= "000";
+                sel_write <= "000";
+                imm_in <= X"00";
+                reg_or_imm <= '0';
+                sel_op <= "00";
+            end case;
 
+        when others =>
+            case state_s is
+            when "01" =>    --DECODE
+                inst_reg_wr_en <= '0';
+                pc_wr_en <= '0';
+                banco_regs_wr_en <= '0';
+                pc_override <= '0';
+                sel_out_a <= "000";
+                sel_out_b <= "000";
+                sel_write <= "000";
+                imm_in <= X"00";
+                reg_or_imm <= '0';
+                sel_op <= "00";
+            when "10" =>    --EXECUTE
+                inst_reg_wr_en <= '0';
+                pc_wr_en <= '0';
+                banco_regs_wr_en <= '0';
+                pc_override <= '0';
+                sel_out_a <= "000";
+                sel_out_b <= "000";
+                sel_write <= "000";
+                imm_in <= X"00";
+                reg_or_imm <= '0';
+                sel_op <= "00";
+            when "00" =>    --FETCH
+                inst_reg_wr_en <= '1';
+                pc_wr_en <= '1';
+                banco_regs_wr_en <= '0';
+                pc_override <= '0';
+                sel_out_a <= "000";
+                sel_out_b <= "000";
+                sel_write <= "000";
+                imm_in <= X"00";
+                reg_or_imm <= '0';
+                sel_op <= "00";
+            when others => 
+                inst_reg_wr_en <= '0';
+                pc_wr_en <= '0';
+                banco_regs_wr_en <= '0';
+                pc_override <= '0';
+                sel_out_a <= "000";
+                sel_out_b <= "000";
+                sel_write <= "000";
+                imm_in <= X"00";
+                reg_or_imm <= '0';
+                sel_op <= "00";
+            end case;
 
-
+        end case;
+        end process;
 
         pc_in_n <= pc_out + 1;
-        pc_in_j <= (instruction_in(7 downto 0)); --accessing only half od ROM
+        pc_in_j <= (instruction_in(7 downto 0));
 
         -- NOP                      0000 0000 0000 0000
 
