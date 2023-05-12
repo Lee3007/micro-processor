@@ -8,6 +8,7 @@ entity pc is
         pc_in_n: in unsigned(7 downto 0); 
         pc_in_j: in unsigned(7 downto 0); 
         clk: in std_logic;
+        rst: in std_logic;
         write_enable: in std_logic := '1';
         pc_out: out unsigned(7 downto 0) := X"00"
     );
@@ -19,11 +20,15 @@ architecture a_pc of pc is
     signal pc_out_s: unsigned(7 downto 0) := X"00";
 
     begin
-        process(clk, write_enable)
+        process(clk, rst, write_enable)
         begin
-            if(rising_edge(clk) and write_enable = '1') then
+
+            if(rst = '1') then
+                pc_out_s <= X"00";
+            elsif(rising_edge(clk) and write_enable = '1') then
                 pc_out_s <= pc_in_s;
             end if;
+
         end process;
                 
         pc_in_s <= pc_in_j when override = '1' else pc_in_n;

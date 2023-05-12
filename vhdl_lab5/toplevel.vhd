@@ -41,6 +41,7 @@ architecture a_toplevel of toplevel is
             pc_in_n: in unsigned(7 downto 0); 
             pc_in_j: in unsigned(7 downto 0); 
             clk: in std_logic;
+            rst: in std_logic;
             write_enable: in std_logic := '1';
             pc_out: out unsigned(7 downto 0)
         );
@@ -63,7 +64,8 @@ architecture a_toplevel of toplevel is
             sel_write: out unsigned(2 downto 0);
             imm_in: out unsigned(7 downto 0);
             reg_or_imm: out std_logic;
-            sel_op: out unsigned(1 downto 0)
+            sel_op: out unsigned(1 downto 0);
+            state_DEBUG: out unsigned(1 downto 0)
         );
     end component;
     
@@ -97,6 +99,11 @@ architecture a_toplevel of toplevel is
     signal instr_reg_wr_en_s, pc_wr_en_s, banco_regs_wr_en_s, override_s, reg_or_imm_s: std_logic;
 
     begin
+        pc_out <= pc_out_s;
+        instruction <= instruction_to_uc_s;
+        reg_a <= reg_out_a_s;
+        reg_b <= reg_out_b_s;
+        result <= ula_result_s;
 
         ula_in_y_s <= reg_out_b_s when reg_or_imm_s = '0'
         else ( X"00" & imm_in_s);
@@ -116,6 +123,7 @@ architecture a_toplevel of toplevel is
 
         pcuut: pc port map(
             clk => clock,
+            rst => rst,
             write_enable => pc_wr_en_s,
             override => override_s,
             pc_in_n => pc_in_n_s,
@@ -132,14 +140,15 @@ architecture a_toplevel of toplevel is
             inst_reg_wr_en => instr_reg_wr_en_s,
             banco_regs_wr_en => banco_regs_wr_en_s,
             pc_override => override_s,
-            pc_in_n => pc_in_j_s,
+            pc_in_n => pc_in_n_s,
             pc_in_j => pc_in_j_s,
             sel_out_a => sel_out_a_s,
             sel_out_b => sel_out_b_s,
             sel_write => sel_write_s,
             imm_in => imm_in_s,
             reg_or_imm => reg_or_imm_s,
-            sel_op => sel_op_s
+            sel_op => sel_op_s,
+            state_DEBUG => state
         );
 
         ulauut: ula port map(

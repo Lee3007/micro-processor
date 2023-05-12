@@ -27,8 +27,8 @@ architecture arch_reg_16bits of reg_16bits is
                 end if;
             end if;
 
-            reg_out <= data;
-
         end process;
+            
+        reg_out <= data;
     
 end architecture;

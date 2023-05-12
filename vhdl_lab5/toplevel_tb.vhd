@@ -65,17 +65,10 @@ architecture toplevel_tb_a of toplevel_tb is
         process
         begin
             rst_s <= '1';
-            wait for 10 ns;
+            wait for 200 ns;
             rst_s <= '0';
 
             wait;
         end process;
 
 end architecture;
-
-
--- ghdl -a pc.vhd && ghdl -e pc
--- ghdl -a rom.vhd && ghdl -e rom
--- ghdl -a uc.vhd && ghdl -e uc
--- ghdl -a toplevel_tb.vhd && ghdl -e toplevel_tb
--- ghdl -r toplevel_tb --wave=toplevel_tb.ghw && gtkwave toplevel_tb.ghw

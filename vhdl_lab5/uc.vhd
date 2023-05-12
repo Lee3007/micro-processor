@@ -6,7 +6,7 @@ entity uc is
     port (
         clk: in std_logic;
         rst: in std_logic;
-        pc_out: in unsigned(7 downto 0);
+        pc_out: in unsigned(7 downto 0) := X"00";
         instruction_in: in unsigned(15 downto 0);
         pc_wr_en: out std_logic;
         inst_reg_wr_en: out std_logic;
@@ -19,6 +19,7 @@ entity uc is
         sel_write: out unsigned(2 downto 0);
         imm_in: out unsigned(7 downto 0);
         reg_or_imm: out std_logic;
+        state_DEBUG: out unsigned(1 downto 0);
         sel_op: out unsigned(1 downto 0)
     );
 end entity;
@@ -44,7 +45,7 @@ architecture a_uc of uc is
 
         opcode_s <= instruction_in(15 downto 11);
 
-        process(clk, rst)
+        process(state_s, opcode_s)
         begin
 
         case opcode_s is
@@ -84,7 +85,16 @@ architecture a_uc of uc is
                 reg_or_imm <= '0';
                 sel_op <= "00";
             when others =>                             
-            
+                inst_reg_wr_en <= '0';
+                pc_wr_en <= '0';
+                banco_regs_wr_en <= '0';
+                pc_override <= '0';
+                sel_out_a <= "000";
+                sel_out_b <= "000";
+                sel_write <= "000";
+                imm_in <= X"00";
+                reg_or_imm <= '0';
+                sel_op <= "00";
             end case;
 
         when "00001" =>     --MOV REG REG
@@ -170,7 +180,7 @@ architecture a_uc of uc is
                 imm_in <= X"00";
                 reg_or_imm <= '0';
                 sel_op <= "00";
-                when others => 
+            when others => 
                 inst_reg_wr_en <= '0';
                 pc_wr_en <= '0';
                 banco_regs_wr_en <= '0';
@@ -218,7 +228,7 @@ architecture a_uc of uc is
                 imm_in <= X"00";
                 reg_or_imm <= '0';
                 sel_op <= "00";
-                when others => 
+            when others => 
                 inst_reg_wr_en <= '0';
                 pc_wr_en <= '0';
                 banco_regs_wr_en <= '0';
@@ -266,7 +276,7 @@ architecture a_uc of uc is
                 imm_in <= X"00";
                 reg_or_imm <= '0';
                 sel_op <= "00";
-                when others => 
+            when others => 
                 inst_reg_wr_en <= '0';
                 pc_wr_en <= '0';
                 banco_regs_wr_en <= '0';
@@ -314,7 +324,7 @@ architecture a_uc of uc is
                 imm_in <= X"00";
                 reg_or_imm <= '0';
                 sel_op <= "00";
-                when others => 
+            when others => 
                 inst_reg_wr_en <= '0';
                 pc_wr_en <= '0';
                 banco_regs_wr_en <= '0';
@@ -362,7 +372,7 @@ architecture a_uc of uc is
                 imm_in <= X"00";
                 reg_or_imm <= '0';
                 sel_op <= "00";
-                when others => 
+            when others => 
                 inst_reg_wr_en <= '0';
                 pc_wr_en <= '0';
                 banco_regs_wr_en <= '0';
@@ -410,7 +420,7 @@ architecture a_uc of uc is
                 imm_in <= X"00";
                 reg_or_imm <= '0';
                 sel_op <= "00";
-                when others => 
+            when others => 
                 inst_reg_wr_en <= '0';
                 pc_wr_en <= '0';
                 banco_regs_wr_en <= '0';
@@ -572,6 +582,7 @@ architecture a_uc of uc is
 
         pc_in_n <= pc_out + 1;
         pc_in_j <= (instruction_in(7 downto 0));
+        state_DEBUG <= state_s;
 
         -- NOP                      0000 0000 0000 0000
 

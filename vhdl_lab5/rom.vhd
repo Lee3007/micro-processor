@@ -64,12 +64,15 @@ architecture a_rom of rom is
         
 end architecture;
 
---ghdl -a banco_regs.vhd && ghdl -e banco_regs 
---ghdl -a pc.vhd && ghdl -e pc
---ghdl -a reg_16bits.vhd && ghdl -e reg_16bits 
---ghdl -a rom.vhd && ghdl -e rom 
---ghdl -a state_machine.vhd && ghdl -e state_machine 
---ghdl -a uc.vhd && ghdl -e uc 
---ghdl -a ula.vhd && ghdl -e ula 
---ghdl -a toplevel.vhd && ghdl -e toplevel 
---ghdl -a toplevel_tb.vhd && ghdl -e toplevel_tb 
+--  ghdl -a reg_16bits.vhd && ghdl -e reg_16bits 
+--  ghdl -a banco_regs.vhd && ghdl -e banco_regs 
+--  ghdl -a pc.vhd && ghdl -e pc
+--  ghdl -a state_machine.vhd && ghdl -e state_machine 
+--  ghdl -a uc.vhd && ghdl -e uc 
+--  ghdl -a ula.vhd && ghdl -e ula 
+--  ghdl -a rom.vhd && ghdl -e rom 
+--  ghdl -a toplevel.vhd && ghdl -e toplevel 
+--  ghdl -a toplevel_tb.vhd && ghdl -e toplevel_tb 
+--  ghdl -r toplevel_tb --wave=toplevel_tb.ghw && gtkwave toplevel_tb.ghw
+
+-- ghdl -a reg_16bits.vhd && ghdl -e reg_16bits && ghdl -a banco_regs.vhd && ghdl -e banco_regs && ghdl -a pc.vhd && ghdl -e pc && ghdl -a state_machine.vhd && ghdl -e state_machine && ghdl -a uc.vhd && ghdl -e uc && ghdl -a ula.vhd && ghdl -e ula && ghdl -a rom.vhd && ghdl -e rom && ghdl -a toplevel.vhd && ghdl -e toplevel  && ghdl -a toplevel_tb.vhd && ghdl -e toplevel_tb  && ghdl -r toplevel_tb --wave=toplevel_tb.ghw && gtkwave toplevel_tb.ghw

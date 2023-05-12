@@ -1,0 +1,37 @@
+[*]
+[*] GTKWave Analyzer v3.3.104 (w)1999-2020 BSI
+[*] Fri May 12 02:28:08 2023
+[*]
+[dumpfile] "/home/r3solv/Documents/UTFPR/ArqOrgComp/micro-processor/vhdl_lab5/toplevel_tb.ghw"
+[dumpfile_mtime] "Fri May 12 02:14:50 2023"
+[dumpfile_size] 13416
+[savefile] "/home/r3solv/Documents/UTFPR/ArqOrgComp/micro-processor/vhdl_lab5/lab5.gtkw"
+[timestart] 0
+[size] 1920 1052
+[pos] -30 -30
+*-29.367718 1461000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] top.
+[treeopen] top.toplevel_tb.
+[sst_width] 212
+[signals_width] 237
+[sst_expanded] 1
+[sst_vpaned_height] 306
+@28
+top.toplevel_tb.clk_s
+top.toplevel_tb.rst_s
+#{top.toplevel_tb.state_s[1:0]} top.toplevel_tb.state_s[1] top.toplevel_tb.state_s[0]
+@22
+#{top.toplevel_tb.pc_s[7:0]} top.toplevel_tb.pc_s[7] top.toplevel_tb.pc_s[6] top.toplevel_tb.pc_s[5] top.toplevel_tb.pc_s[4] top.toplevel_tb.pc_s[3] top.toplevel_tb.pc_s[2] top.toplevel_tb.pc_s[1] top.toplevel_tb.pc_s[0]
+@28
+#{top.toplevel_tb.instruction_s[15:0]} top.toplevel_tb.instruction_s[15] top.toplevel_tb.instruction_s[14] top.toplevel_tb.instruction_s[13] top.toplevel_tb.instruction_s[12] top.toplevel_tb.instruction_s[11] top.toplevel_tb.instruction_s[10] top.toplevel_tb.instruction_s[9] top.toplevel_tb.instruction_s[8] top.toplevel_tb.instruction_s[7] top.toplevel_tb.instruction_s[6] top.toplevel_tb.instruction_s[5] top.toplevel_tb.instruction_s[4] top.toplevel_tb.instruction_s[3] top.toplevel_tb.instruction_s[2] top.toplevel_tb.instruction_s[1] top.toplevel_tb.instruction_s[0]
+@22
+#{top.toplevel_tb.reg_a_s[15:0]} top.toplevel_tb.reg_a_s[15] top.toplevel_tb.reg_a_s[14] top.toplevel_tb.reg_a_s[13] top.toplevel_tb.reg_a_s[12] top.toplevel_tb.reg_a_s[11] top.toplevel_tb.reg_a_s[10] top.toplevel_tb.reg_a_s[9] top.toplevel_tb.reg_a_s[8] top.toplevel_tb.reg_a_s[7] top.toplevel_tb.reg_a_s[6] top.toplevel_tb.reg_a_s[5] top.toplevel_tb.reg_a_s[4] top.toplevel_tb.reg_a_s[3] top.toplevel_tb.reg_a_s[2] top.toplevel_tb.reg_a_s[1] top.toplevel_tb.reg_a_s[0]
+@23
+#{top.toplevel_tb.reg_b_s[15:0]} top.toplevel_tb.reg_b_s[15] top.toplevel_tb.reg_b_s[14] top.toplevel_tb.reg_b_s[13] top.toplevel_tb.reg_b_s[12] top.toplevel_tb.reg_b_s[11] top.toplevel_tb.reg_b_s[10] top.toplevel_tb.reg_b_s[9] top.toplevel_tb.reg_b_s[8] top.toplevel_tb.reg_b_s[7] top.toplevel_tb.reg_b_s[6] top.toplevel_tb.reg_b_s[5] top.toplevel_tb.reg_b_s[4] top.toplevel_tb.reg_b_s[3] top.toplevel_tb.reg_b_s[2] top.toplevel_tb.reg_b_s[1] top.toplevel_tb.reg_b_s[0]
+@22
+#{top.toplevel_tb.result_s[15:0]} top.toplevel_tb.result_s[15] top.toplevel_tb.result_s[14] top.toplevel_tb.result_s[13] top.toplevel_tb.result_s[12] top.toplevel_tb.result_s[11] top.toplevel_tb.result_s[10] top.toplevel_tb.result_s[9] top.toplevel_tb.result_s[8] top.toplevel_tb.result_s[7] top.toplevel_tb.result_s[6] top.toplevel_tb.result_s[5] top.toplevel_tb.result_s[4] top.toplevel_tb.result_s[3] top.toplevel_tb.result_s[2] top.toplevel_tb.result_s[1] top.toplevel_tb.result_s[0]
+@28
+top.toplevel_tb.zero_s
+top.toplevel_tb.carry_s
+[pattern_trace] 1
+[pattern_trace] 0
