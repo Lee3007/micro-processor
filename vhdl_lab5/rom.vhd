@@ -2,10 +2,10 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
--- NOP                      0000 0000 0000 0000
+        -- NOP                      0000 0000 0000 0000
 
-        -- MOV REGDST REG              0000 1RRR RRR? ????
-        -- MOV REGDST IMM              0001 0RRR IIII IIII
+        -- MOV REGDST REG           0000 1RRR RRR? ????
+        -- MOV REGDST IMM           0001 0RRR IIII IIII
         
         -- MOV A IMM                0001 1??? IIII IIII
         -- MOV A REG                0010 0RRR ???? ????
@@ -30,14 +30,14 @@ architecture a_rom of rom is
     type mem is array (0 to 127) of unsigned (15 downto 0);
 
     constant conteudo_rom : mem := (
-        0 => B"00010_011_00000101", -- mov r3 5
-        1 => B"00010_100_00001000", -- mov r4 8
-        2 => B"00010_001_00000000", -- move a 0
-        3 => B"00101_011_00000000", -- add a r3
-        4 => B"00101_100_00000000", -- add a r4
-        5 => B"00001_101_001_00000", -- mov r5 a
-        6 => B"01000_000_00000001", -- sub a 1
-        7 => B"00001_101_001_00000", -- mov r5 a
+        0 => B"00010_011_00000101", -- mov r3, 5
+        1 => B"00010_100_00001000", -- mov r4, 8
+        2 => B"00010_001_00000000", -- move a, 0
+        3 => B"00101_011_00000000", -- add a, r3
+        4 => B"00101_100_00000000", -- add a, r4
+        5 => B"00001_101_001_00000", -- mov r5, a
+        6 => B"01000_000_00000001", -- sub a, 1
+        7 => B"00001_101_001_00000", -- mov r5, a
         8 => B"01001_000_00010100", -- ajmp 20
         9 =>  X"0000",
         10 => X"0000",
@@ -50,8 +50,8 @@ architecture a_rom of rom is
         17 => X"0000",
         18 => X"0000",
         19 => X"0000",
-        20 => B"00100_101_00000000", -- mov a r5 
-        21 => B"00001_011_001_00000", -- mov r3 a
+        20 => B"00100_101_00000000", -- mov a, r5 
+        21 => B"00001_011_001_00000", -- mov r3, a
         22 => B"01001_000_00000010", -- ajmp 2
         23 => X"0000",
         24 => X"0000",
