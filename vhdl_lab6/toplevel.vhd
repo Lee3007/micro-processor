@@ -37,9 +37,10 @@ architecture a_toplevel of toplevel is
     
     component pc is
         port (
-            override: in std_logic;
+            pc_sel: in unsigned(1 downto 0);
             pc_in_n: in unsigned(7 downto 0); 
-            pc_in_j: in unsigned(7 downto 0); 
+            pc_in_j: in unsigned(7 downto 0);
+            pc_in_b: in unsigned(7 downto 0); 
             clk: in std_logic;
             rst: in std_logic;
             write_enable: in std_logic := '1';
@@ -51,21 +52,24 @@ architecture a_toplevel of toplevel is
         port (
             clk: in std_logic;
             rst: in std_logic;
-            pc_out: in unsigned(7 downto 0);
+            pc_out: in unsigned(7 downto 0) := X"00";
             instruction_in: in unsigned(15 downto 0);
+            carry: in std_logic;
+            zero: in std_logic;
             pc_wr_en: out std_logic;
             inst_reg_wr_en: out std_logic;
             banco_regs_wr_en: out std_logic;
             acc_wr_en: out std_logic;
-            pc_override: out std_logic;
+            pc_sel: out unsigned(1 downto 0);
             pc_in_n: out unsigned(7 downto 0); 
             pc_in_j: out unsigned(7 downto 0);
+            pc_in_b: out unsigned(7 downto 0);
             sel_out: out unsigned(2 downto 0);
             sel_write: out unsigned(2 downto 0);
             imm_in: out unsigned(7 downto 0);
             reg_or_imm: out std_logic;
-            sel_op: out unsigned(1 downto 0);
-            state_DEBUG: out unsigned(1 downto 0)
+            state_DEBUG: out unsigned(1 downto 0);
+            sel_op: out unsigned(1 downto 0)
         );
     end component;
     
@@ -91,10 +95,10 @@ architecture a_toplevel of toplevel is
     end component;
 
     signal instruction_to_reg_s, instruction_to_uc_s, reg_out_s, acc_out_s, ula_result_s, ula_in_y_s: unsigned(15 downto 0);
-    signal pc_in_n_s, pc_in_j_s, pc_out_s, imm_in_s: unsigned(7 downto 0);
+    signal pc_in_n_s, pc_in_j_s, pc_in_b_s, pc_out_s, imm_in_s: unsigned(7 downto 0);
     signal sel_out_s, sel_write_s: unsigned(2 downto 0);
-    signal sel_op_s: unsigned(1 downto 0);
-    signal instr_reg_wr_en_s, pc_wr_en_s, banco_regs_wr_en_s, acc_wr_en_s, override_s, reg_or_imm_s: std_logic;
+    signal sel_op_s, pc_sel_s: unsigned(1 downto 0);
+    signal instr_reg_wr_en_s, pc_wr_en_s, banco_regs_wr_en_s, acc_wr_en_s, reg_or_imm_s, zero_s, carry_s: std_logic;
 
     begin
         pc_out <= pc_out_s;
@@ -106,12 +110,15 @@ architecture a_toplevel of toplevel is
         ula_in_y_s <= reg_out_s when reg_or_imm_s = '0'
         else ( X"00" & imm_in_s);
 
-        rom: rom port map(
+        zero <= zero_s;
+        carry <= carry_s;
+
+        rom_u: rom port map(
             endereco => pc_out_s,
             dado => instruction_to_reg_s
         );
 
-        instruction_register: reg_16bits port map(
+        instruction_register_u: reg_16bits port map(
             reg_in => instruction_to_reg_s,
             rst => rst,
             clk => clock,
@@ -119,7 +126,7 @@ architecture a_toplevel of toplevel is
             reg_out => instruction_to_uc_s
         );
 
-        accumulator: reg_16bits port map(
+        accumulator_u: reg_16bits port map(
             reg_in => ula_result_s,
             rst => rst,
             clk => clock,
@@ -127,28 +134,32 @@ architecture a_toplevel of toplevel is
             reg_out => acc_out_s
         );
 
-        pc: pc port map(
+        pc_u: pc port map(
             clk => clock,
             rst => rst,
             write_enable => pc_wr_en_s,
-            override => override_s,
+            pc_sel => pc_sel_s,
             pc_in_n => pc_in_n_s,
             pc_in_j => pc_in_j_s,
+            pc_in_b => pc_in_b_s,
             pc_out => pc_out_s
         );
 
-        uc: uc port map(
+        uc_u: uc port map(
             clk => clock,
             rst => rst,
             pc_out => pc_out_s,
             instruction_in => instruction_to_uc_s,
+            carry => carry_s,
+            zero => zero_s,
             pc_wr_en => pc_wr_en_s,
             inst_reg_wr_en => instr_reg_wr_en_s,
             acc_wr_en => acc_wr_en_s,
             banco_regs_wr_en => banco_regs_wr_en_s,
-            pc_override => override_s,
+            pc_sel => pc_sel_s,
             pc_in_n => pc_in_n_s,
             pc_in_j => pc_in_j_s,
+            pc_in_b => pc_in_b_s,
             sel_out => sel_out_s,
             sel_write => sel_write_s,
             imm_in => imm_in_s,
@@ -157,16 +168,16 @@ architecture a_toplevel of toplevel is
             state_DEBUG => state
         );
 
-        ula: ula port map(
+        ula_u: ula port map(
             x => acc_out_s,
             y => ula_in_y_s,
             result => ula_result_s,
             sel_op => sel_op_s,
-            zero => zero,
-            carry => carry
+            zero => zero_s,
+            carry => carry_s
         );
 
-        banco: banco_regs port map(
+        banco_u: banco_regs port map(
             out_sel => sel_out_s,
             write_sel => sel_write_s,
             data_in => ula_result_s,

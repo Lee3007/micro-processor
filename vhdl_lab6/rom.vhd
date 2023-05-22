@@ -18,6 +18,11 @@ use ieee.numeric_std.all;
 
         -- JUMP IMM                 0100 1??? IIII IIII
 
+        -- JC                       0101 0??? IIII IIII
+        -- JNC                      0101 1??? IIII IIII
+        -- JZ                       0110 0??? IIII IIII
+        -- JNZ                      0110 1??? IIII IIII
+
 entity rom is
     port (
         endereco: in unsigned(7 downto 0);

@@ -4,9 +4,10 @@ use ieee.numeric_std.all;
 
 entity pc is
     port (
-        override: in std_logic;
+        pc_sel: in unsigned(1 downto 0);
         pc_in_n: in unsigned(7 downto 0); 
         pc_in_j: in unsigned(7 downto 0); 
+        pc_in_b: in unsigned(7 downto 0); 
         clk: in std_logic;
         rst: in std_logic;
         write_enable: in std_logic := '1';
@@ -30,8 +31,12 @@ architecture a_pc of pc is
             end if;
 
         end process;
-                
-        pc_in_s <= pc_in_j when override = '1' else pc_in_n;
+        
+        
+        pc_in_s <= pc_in_j when pc_sel = "01" else 
+                   pc_in_b when pc_sel = "10" else
+                   pc_in_n;
+
         pc_out <= pc_out_s;
             
 end architecture;
