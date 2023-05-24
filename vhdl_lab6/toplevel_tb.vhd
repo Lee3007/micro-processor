@@ -26,7 +26,7 @@ architecture toplevel_tb_a of toplevel_tb is
     signal pc_s: unsigned(7 downto 0);
     signal instruction_s, reg_a_s, reg_b_s, result_s: unsigned(15 downto 0);
 
-    constant period_time : time := 100 ns;
+    constant period_time : time := 10 ns;
     signal finished : std_logic := '0';
 
     begin
@@ -65,7 +65,7 @@ architecture toplevel_tb_a of toplevel_tb is
         process
         begin
             rst_s <= '1';
-            wait for 200 ns;
+            wait for 50 ns;
             rst_s <= '0';
 
             wait;

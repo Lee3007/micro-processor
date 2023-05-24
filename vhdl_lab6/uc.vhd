@@ -135,8 +135,8 @@ architecture a_uc of uc is
                 sel_out <= "000";
                 sel_write <= instruction_in(10 downto 8);   
                 imm_in <= X"00";
-                reg_or_imm <= '0';  
-                sel_op <= "10"; --selecting pass y
+                reg_or_imm <= '1';  
+                sel_op <= "00"; --selecting pass y
             when "00" =>    --FETCH
                 inst_reg_wr_en <= '1';
                 pc_wr_en <= '1';
@@ -280,7 +280,7 @@ architecture a_uc of uc is
                 sel_write <= "000";
                 imm_in <= X"00";
                 reg_or_imm <= '0';
-                sel_op <= "01"; --select pass y
+                sel_op <= "10"; --select pass y
             when "00" =>    --FETCH
                 inst_reg_wr_en <= '1';
                 pc_wr_en <= '1';

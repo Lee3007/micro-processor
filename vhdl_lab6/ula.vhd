@@ -32,7 +32,8 @@ architecture a_ula of ula is
 
         zero <= '1' when result_signal(15 downto 0) = X"0000" else '0';
         result <= result_signal(15 downto 0);
-        carry <= result_signal(16);
+        carry <= not result_signal(16) when sel_op = "01"
+        else result_signal(16);
 
 end architecture;
 
