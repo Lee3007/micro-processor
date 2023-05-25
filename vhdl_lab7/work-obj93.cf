@@ -1,0 +1,28 @@
+v 4
+file . "toplevel.vhd" "84d5997ffa2474b6e820916c9d5935d961fb2dcb" "20230525012147.312":
+  entity toplevel at 1( 0) + 0 on 151;
+  architecture a_toplevel of toplevel at 19( 469) + 0 on 152;
+file . "uc.vhd" "85cff577276876eddf884dfc87d0b22efbe6ab03" "20230525012147.118":
+  entity uc at 1( 0) + 0 on 145;
+  architecture a_uc of uc at 30( 897) + 0 on 146;
+file . "rom.vhd" "db7a4ba114f60739d3ee9eb1ba4c10e1acb673e0" "20230525012147.256":
+  entity rom at 1( 0) + 0 on 149;
+  architecture a_rom of rom at 33( 997) + 0 on 150;
+file . "pc.vhd" "b397eca7ebd13724ab8bd48a99cfdfc6667a8846" "20230525012146.994":
+  entity pc at 1( 0) + 0 on 141;
+  architecture a_pc of pc at 18( 431) + 0 on 142;
+file . "reg_16bits.vhd" "ecdae7fedda9c2081a7a317358bcc7a8434a3761" "20230525012146.865":
+  entity reg_16bits at 1( 0) + 0 on 137;
+  architecture arch_reg_16bits of reg_16bits at 15( 290) + 0 on 138;
+file . "banco_regs.vhd" "3d9b6d294f168b71129cf0514ab9eda85b3dd6b4" "20230525012146.936":
+  entity banco_regs at 1( 0) + 0 on 139;
+  architecture arch_banco_regs of banco_regs at 22( 466) + 0 on 140;
+file . "state_machine.vhd" "4a0ad04a145fbde8d2b387831f4744639e02e493" "20230525012147.053":
+  entity state_machine at 1( 0) + 0 on 143;
+  architecture a_state_machine of state_machine at 12( 192) + 0 on 144;
+file . "ula.vhd" "ff4d24430f288b1dd2b5367abe29c1190d02587a" "20230525012147.198":
+  entity ula at 1( 0) + 0 on 147;
+  architecture a_ula of ula at 22( 450) + 0 on 148;
+file . "toplevel_tb.vhd" "8ed8d33cea3976113c5d8a2a3b533303c9ed68e3" "20230525012147.404":
+  entity toplevel_tb at 1( 0) + 0 on 153;
+  architecture toplevel_tb_a of toplevel_tb at 8( 105) + 0 on 154;
