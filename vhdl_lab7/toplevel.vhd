@@ -127,6 +127,7 @@ architecture a_toplevel of toplevel is
         else data_out_ram_s;
 
         address_ram_s <= reg_out_s(7 downto 0);
+        data_in_ram_s <= acc_out_s;
 
         zero <= zero_s;
         carry <= carry_s;

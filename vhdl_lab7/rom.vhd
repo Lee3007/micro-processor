@@ -4,19 +4,19 @@ use ieee.numeric_std.all;
 
         -- NOP                      0000 0000 0000 0000
 
-        -- MOV REGDST A             0000 1RRR ???? ????
-        -- MOV REGDST IMM           0001 0RRR IIII IIII
+        -- MOV REGDST, A             0000 1RRR ???? ????
+        -- MOV REGDST, IMM           0001 0RRR IIII IIII
         
-        -- MOV A IMM                0001 1??? IIII IIII
-        -- MOV A REG                0010 0RRR ???? ????
+        -- MOV A, IMM                0001 1??? IIII IIII
+        -- MOV A, REG                0010 0RRR ???? ????
 
-        -- ADD A REG                0010 1RRR ???? ????
-        -- ADD A IMM                0011 0??? IIII IIII
+        -- ADD A, REG                0010 1RRR ???? ????
+        -- ADD A, IMM                0011 0??? IIII IIII
 
-        -- SUBB A REG               0011 1RRR ???? ????
-        -- SUBB A IMM               0100 0??? IIII IIII
+        -- SUBB A, REG               0011 1RRR ???? ????
+        -- SUBB A, IMM               0100 0??? IIII IIII
 
-        -- JUMP IMM                 0100 1??? IIII IIII
+        -- JUMP, IMM                 0100 1??? IIII IIII
 
         -- JC                       0101 0??? IIII IIII
         -- JNC                      0101 1??? IIII IIII
@@ -38,32 +38,39 @@ architecture a_rom of rom is
     type mem is array (0 to 255) of unsigned (15 downto 0);
 
     constant conteudo_rom : mem := (
-        0 =>  B"00010_011_00000000", -- MOV R3 0
-        1 =>  B"00010_100_00000000", -- MOV R4 0
-        2 =>  B"00011_000_00000000", -- MOV A  0
-        3 =>  B"00101_011_00000000", -- ADD A R3
-        4 =>  B"00101_100_00000000", -- ADD A R4
-        5 =>  B"00001_100_00000000", -- MOV R4 A
-        6 =>  B"00100_011_00000000", -- MOV A R3
-        7 =>  B"00110_000_00000001", -- ADD A  1
-        8 =>  B"00001_011_00000000", -- MOV R3 A
-        9 =>  B"01000_000_00011110", -- SUB A 30
-        10 => B"01010_000_11111000", -- JC -8
-        11 => B"00100_100_00000000", -- MOV A R4
-        12 => B"00001_101_00000000", -- MOV R5 A
-        13 => X"0000",
-        14 => X"0000",
-        15 => X"0000",
-        16 => X"0000",
-        17 => X"0000",
-        18 => X"0000",
-        19 => X"0000",
-        20 => X"0000",
-        21 => X"0000",
-        22 => X"0000",
-        23 => X"0000",
-        24 => X"0000",
-        25 => X"0000",
+        -- Preenche com 1 a 100 a memória
+        0 =>  B"00011_000_01100100",    -- MOV A, 100
+        1 =>  B"00001_001_00000000",    -- MOV REG1, A
+        2 =>  B"01110_001_00000000",    -- MOVX @REG1, A
+        3 =>  B"01000_000_00000001",    -- SUBB A, 1
+        4 =>  B"01101_000_11111101",    -- JNZ -3
+        
+        -- Inicializa variáveis 
+        5 =>  B"00010_001_00000010",    -- MOV REG1, 2
+        6 =>  B"00010_010_00000010",    -- MOV REG2, 2
+        
+        -- Deleta os múltiplos
+        7 =>  B"00100_001_00000000",    -- MOV A, REG1
+        8 =>  B"00101_010_00000000",    -- ADD A, REG2 
+        9 =>  B"00001_001_00000000",    -- MOV REG1, A
+        10 => B"00011_000_00000000",    -- MOV A, 0
+        11 => B"01110_001_00000000",    -- MOVX @REG1, A
+        12 => B"00100_001_00000000",    -- MOV A, REG1 
+        13 => B"01000_000_01100100",    -- SUBB A, 100
+        14 => B"01010_000_11111001",    -- JC -7
+
+        -- Pega o próximo múltiplo para remover (não pode ser um já removido)
+        15 => B"00100_010_00000000",    -- MOV A, REG2
+        16 => B"00110_000_00000001",    -- ADD A, 1
+        17 => B"00001_010_00000000",    -- MOV R2, A
+        18 => B"01111_010_00000000",    -- MOVX A, @REG2
+        19 => B"00110_000_00000000",    -- ADD A, 0
+        20 => B"01100_000_11111011",    -- JZ -5
+
+        -- Verifica se já passou de ceil( sqrt(100) )
+        21 => B"00001_001_00000000",    -- MOV REG1, A
+        22 => B"01000_000_00001010",    -- SUBB A, 10
+        23 => B"01010_000_11110000",    -- JC -16
         
     others => (others=>'0'));
     

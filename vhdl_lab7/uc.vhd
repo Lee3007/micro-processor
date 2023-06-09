@@ -537,7 +537,7 @@ architecture a_uc of uc is
                 acc_wr_en <= '1';
                 pc_sel <= "00";
                 sel_out <= "000";
-                sel_write <= "001";
+                sel_write <= "000";
                 imm_in <= instruction_in(7 downto 0);
                 reg_or_imm <= '1';
                 sel_op <= "01";
@@ -869,7 +869,7 @@ architecture a_uc of uc is
                 acc_in_sel <= '0'; 
             when "10" =>       --EXECUTE
                 inst_reg_wr_en <= '0';
-                pc_wr_en <= not zero_s;
+                pc_wr_en <= '0';
                 banco_regs_wr_en <= '0';
                 acc_wr_en <= '0';
                 pc_sel <= "00";
@@ -925,7 +925,7 @@ architecture a_uc of uc is
                 acc_in_sel <= '0'; 
             when "10" =>       --EXECUTE
                 inst_reg_wr_en <= '0';
-                pc_wr_en <= not zero_s;
+                pc_wr_en <= '0';
                 banco_regs_wr_en <= '0';
                 acc_wr_en <= '1';
                 pc_sel <= "00";
