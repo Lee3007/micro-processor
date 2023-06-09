@@ -910,13 +910,13 @@ architecture a_uc of uc is
 
         when "01111" =>     --MOVX A, @REG
             case state_s is
-            when "01" =>       --DECODE
+                when "01" =>       --DECODE
                 inst_reg_wr_en <= '0';
                 pc_wr_en <= '0';
                 banco_regs_wr_en <= '0';
                 acc_wr_en <= '0';
                 pc_sel <= "00";
-                sel_out <= "000";
+                sel_out <= instruction_in(10 downto 8);
                 sel_write <= "000";
                 imm_in <= X"00";
                 reg_or_imm <= '0';
@@ -927,7 +927,7 @@ architecture a_uc of uc is
                 inst_reg_wr_en <= '0';
                 pc_wr_en <= not zero_s;
                 banco_regs_wr_en <= '0';
-                acc_wr_en <= '0';
+                acc_wr_en <= '1';
                 pc_sel <= "00";
                 sel_out <= "000";
                 sel_write <= "000";
@@ -935,7 +935,7 @@ architecture a_uc of uc is
                 reg_or_imm <= '0';
                 sel_op <= "00";
                 ram_wr_en <= '0';
-                acc_in_sel <= '0';
+                acc_in_sel <= '1';
             when "00" =>    --FETCH
                 inst_reg_wr_en <= '1';
                 pc_wr_en <= '1';
@@ -1028,27 +1028,5 @@ architecture a_uc of uc is
         pc_in_j <= (instruction_in(7 downto 0));
         pc_in_b <= pc_out + instruction_in(7 downto 0) - 1;
         state_DEBUG <= state_s;
-
-        -- NOP                      0000 0000 0000 0000
-
-        -- MOV REGDST A             0000 1RRR ???? ????
-        -- MOV REGDST IMM           0001 0RRR IIII IIII
-        
-        -- MOV A IMM                0001 1??? IIII IIII
-        -- MOV A REG                0010 0RRR ???? ????
-
-        -- ADD A REG                0010 1RRR ???? ????
-        -- ADD A IMM                0011 0??? IIII IIII
-
-        -- SUBB A REG               0011 1RRR ???? ????
-        -- SUBB A IMM               0100 0??? IIII IIII
-
-        -- JUMP IMM                 0100 1??? IIII IIII
-
-        -- JC                       0101 0??? IIII IIII
-        -- JNC                      0101 1??? IIII IIII
-        -- JZ                       0110 0??? IIII IIII
-        -- JNZ                      0110 1??? IIII IIII
-
 
 end architecture;

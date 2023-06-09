@@ -23,8 +23,8 @@ use ieee.numeric_std.all;
         -- JZ                       0110 0??? IIII IIII
         -- JNZ                      0110 1??? IIII IIII
 
-        -- MOVX @REG, A             0111 0RRR ???? ????
-        -- MOVX A, @REG             0111 1RRR ???? ????
+        -- MOVX @REG, A             0111 0RRR ???? ????  ESCREVE NA RAM(@REG) <= A
+        -- MOVX A, @REG             0111 1RRR ???? ????  LÊ DA RAM(@REG) => A 
 
 entity rom is
     port (
@@ -35,7 +35,7 @@ end entity;
 
 architecture a_rom of rom is
     
-    type mem is array (0 to 127) of unsigned (15 downto 0);
+    type mem is array (0 to 255) of unsigned (15 downto 0);
 
     constant conteudo_rom : mem := (
         0 =>  B"00010_011_00000000", -- MOV R3 0
@@ -48,7 +48,7 @@ architecture a_rom of rom is
         7 =>  B"00110_000_00000001", -- ADD A  1
         8 =>  B"00001_011_00000000", -- MOV R3 A
         9 =>  B"01000_000_00011110", -- SUB A 30
-        10 => B"01011_000_11111000", -- JNC -8
+        10 => B"01010_000_11111000", -- JC -8
         11 => B"00100_100_00000000", -- MOV A R4
         12 => B"00001_101_00000000", -- MOV R5 A
         13 => X"0000",
@@ -72,6 +72,7 @@ architecture a_rom of rom is
         
 end architecture;
 
+--  rm work-obj93.cf
 --  ghdl -a reg_16bits.vhd && ghdl -e reg_16bits 
 --  ghdl -a banco_regs.vhd && ghdl -e banco_regs 
 --  ghdl -a pc.vhd && ghdl -e pc
@@ -79,8 +80,9 @@ end architecture;
 --  ghdl -a uc.vhd && ghdl -e uc 
 --  ghdl -a ula.vhd && ghdl -e ula 
 --  ghdl -a rom.vhd && ghdl -e rom 
+--  ghdl -a ram.vhd && ghdl -e ram 
 --  ghdl -a toplevel.vhd && ghdl -e toplevel 
 --  ghdl -a toplevel_tb.vhd && ghdl -e toplevel_tb 
 --  ghdl -r toplevel_tb --wave=toplevel_tb.ghw && gtkwave toplevel_tb.ghw
 
--- ghdl -a reg_16bits.vhd && ghdl -e reg_16bits && ghdl -a banco_regs.vhd && ghdl -e banco_regs && ghdl -a pc.vhd && ghdl -e pc && ghdl -a state_machine.vhd && ghdl -e state_machine && ghdl -a uc.vhd && ghdl -e uc && ghdl -a ula.vhd && ghdl -e ula && ghdl -a rom.vhd && ghdl -e rom && ghdl -a toplevel.vhd && ghdl -e toplevel  && ghdl -a toplevel_tb.vhd && ghdl -e toplevel_tb  && ghdl -r toplevel_tb --wave=toplevel_tb.ghw && gtkwave toplevel_tb.ghw
+-- rm work-obj93.cf && ghdl -a reg_16bits.vhd && ghdl -e reg_16bits && ghdl -a banco_regs.vhd && ghdl -e banco_regs && ghdl -a pc.vhd && ghdl -e pc && ghdl -a state_machine.vhd && ghdl -e state_machine && ghdl -a uc.vhd && ghdl -e uc && ghdl -a ula.vhd && ghdl -e ula && ghdl -a rom.vhd && ghdl -e rom && ghdl -a ram.vhd && ghdl -e ram && ghdl -a toplevel.vhd && ghdl -e toplevel && ghdl -a toplevel_tb.vhd && ghdl -e toplevel_tb && ghdl -r toplevel_tb --wave=toplevel_tb.ghw && gtkwave toplevel_tb.ghw
