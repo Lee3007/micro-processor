@@ -1,0 +1,145 @@
+{
+	"partitions" : [
+		{
+			"name" : "Top",
+			"pins" : [
+				{
+					"name" : "reg_out_TEST[0]",
+					"strict" : false
+				},
+				{
+					"name" : "reg_out_TEST[1]",
+					"strict" : false
+				},
+				{
+					"name" : "reg_out_TEST[2]",
+					"strict" : false
+				},
+				{
+					"name" : "reg_out_TEST[3]",
+					"strict" : false
+				},
+				{
+					"name" : "reg_out_TEST[4]",
+					"strict" : false
+				},
+				{
+					"name" : "reg_out_TEST[5]",
+					"strict" : false
+				},
+				{
+					"name" : "reg_out_TEST[6]",
+					"strict" : false
+				},
+				{
+					"name" : "reg_out_TEST[7]",
+					"strict" : false
+				},
+				{
+					"name" : "reg_out_TEST[8]",
+					"strict" : false
+				},
+				{
+					"name" : "reg_out_TEST[9]",
+					"strict" : false
+				},
+				{
+					"name" : "reg_out_TEST[10]",
+					"strict" : false
+				},
+				{
+					"name" : "reg_out_TEST[11]",
+					"strict" : false
+				},
+				{
+					"name" : "reg_out_TEST[12]",
+					"strict" : false
+				},
+				{
+					"name" : "reg_out_TEST[13]",
+					"strict" : false
+				},
+				{
+					"name" : "reg_out_TEST[14]",
+					"strict" : false
+				},
+				{
+					"name" : "reg_out_TEST[15]",
+					"strict" : false
+				},
+				{
+					"name" : "reg_out2_TEST[0]",
+					"strict" : false
+				},
+				{
+					"name" : "reg_out2_TEST[1]",
+					"strict" : false
+				},
+				{
+					"name" : "reg_out2_TEST[2]",
+					"strict" : false
+				},
+				{
+					"name" : "reg_out2_TEST[3]",
+					"strict" : false
+				},
+				{
+					"name" : "reg_out2_TEST[4]",
+					"strict" : false
+				},
+				{
+					"name" : "reg_out2_TEST[5]",
+					"strict" : false
+				},
+				{
+					"name" : "reg_out2_TEST[6]",
+					"strict" : false
+				},
+				{
+					"name" : "reg_out2_TEST[7]",
+					"strict" : false
+				},
+				{
+					"name" : "reg_out2_TEST[8]",
+					"strict" : false
+				},
+				{
+					"name" : "reg_out2_TEST[9]",
+					"strict" : false
+				},
+				{
+					"name" : "reg_out2_TEST[10]",
+					"strict" : false
+				},
+				{
+					"name" : "reg_out2_TEST[11]",
+					"strict" : false
+				},
+				{
+					"name" : "reg_out2_TEST[12]",
+					"strict" : false
+				},
+				{
+					"name" : "reg_out2_TEST[13]",
+					"strict" : false
+				},
+				{
+					"name" : "reg_out2_TEST[14]",
+					"strict" : false
+				},
+				{
+					"name" : "reg_out2_TEST[15]",
+					"strict" : false
+				},
+				{
+					"name" : "clk",
+					"strict" : false
+				},
+				{
+					"name" : "rst",
+					"strict" : false
+				}
+			]
+		}
+	]
+}

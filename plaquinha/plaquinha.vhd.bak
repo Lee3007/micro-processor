@@ -1,0 +1,10 @@
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity plaquinha is
+
+end plaquinha;
+
+architecture arq_plaq of plaquinha is
+
+end architecture;

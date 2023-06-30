@@ -1,0 +1,34 @@
+ 
+;Preenche com 1 a 100 a memória
+            MOV A, 100
+preenche:   MOV REG1, A
+            MOVX @REG1, A
+            SUBB A, 1
+            JNZ preenche
+
+;Inicializa variáveis
+            MOV REG1, 2
+            MOV REG2, 2
+
+;Deleta os múltiplos
+deleta:     MOV A, REG1
+            ADD A, REG2 
+            MOV REG1, A
+            MOV A, 0
+            MOVX @REG1, A
+            MOV A, REG1 
+            SUBB A, 100
+            JC deleta
+
+;Pega o próximo múltiplo para remover (não pode ser um já removido)
+procura:    MOV A, REG2
+            ADD A, 1
+            MOV R2, A
+            MOVX A, @REG2
+            ADD A, 0
+            JZ procura
+
+;Verifica se já passou de ceil( sqrt(100) )
+            MOV REG1, A
+            SUBB A, 10
+            JC deleta
