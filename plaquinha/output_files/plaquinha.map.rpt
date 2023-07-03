@@ -1,5 +1,5 @@
 Analysis & Synthesis report for plaquinha
-Fri Jun 30 19:08:57 2023
+Sun Jul  2 12:28:01 2023
 Quartus Prime Version 21.1.1 Build 850 06/23/2022 SJ Lite Edition
 
 
@@ -17,11 +17,12 @@ Quartus Prime Version 21.1.1 Build 850 06/23/2022 SJ Lite Edition
   9. Removed Registers Triggering Further Register Optimizations
  10. General Register Statistics
  11. Multiplexer Restructuring Statistics (Restructuring Performed)
- 12. Port Connectivity Checks: "toplevel:up|banco_regs:banco_u|reg_16bits:reg_0"
- 13. Port Connectivity Checks: "toplevel:up|uc:uc_u"
- 14. Post-Synthesis Netlist Statistics for Top Partition
- 15. Elapsed Time Per Partition
- 16. Analysis & Synthesis Messages
+ 12. Port Connectivity Checks: "Timing_Reference:clock_divider"
+ 13. Port Connectivity Checks: "toplevel:up|banco_regs:banco_u|reg_16bits:reg_0"
+ 14. Port Connectivity Checks: "toplevel:up|uc:uc_u"
+ 15. Post-Synthesis Netlist Statistics for Top Partition
+ 16. Elapsed Time Per Partition
+ 17. Analysis & Synthesis Messages
 
 
 
@@ -48,16 +49,16 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Fri Jun 30 19:08:57 2023       ;
+; Analysis & Synthesis Status        ; Successful - Sun Jul  2 12:28:00 2023       ;
 ; Quartus Prime Version              ; 21.1.1 Build 850 06/23/2022 SJ Lite Edition ;
 ; Revision Name                      ; plaquinha                                   ;
 ; Top-level Entity Name              ; plaquinha                                   ;
 ; Family                             ; MAX 10                                      ;
-; Total logic elements               ; 7,373                                       ;
-;     Total combinational functions  ; 3,245                                       ;
+; Total logic elements               ; 7,402                                       ;
+;     Total combinational functions  ; 3,274                                       ;
 ;     Dedicated logic registers      ; 4,200                                       ;
 ; Total registers                    ; 4200                                        ;
-; Total pins                         ; 34                                          ;
+; Total pins                         ; 64                                          ;
 ; Total virtual pins                 ; 0                                           ;
 ; Total memory bits                  ; 0                                           ;
 ; Embedded Multiplier 9-bit elements ; 0                                           ;
@@ -166,60 +167,62 @@ https://fpgasoftware.intel.com/eula.
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processor 2            ;   0.1%      ;
+;     Processor 2            ;   0.2%      ;
 ;     Processor 3            ;   0.1%      ;
 ;     Processor 4            ;   0.1%      ;
 +----------------------------+-------------+
 
 
-+-----------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                                              ;
-+----------------------------------+-----------------+-----------------+--------------------------------------------------------------------+---------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                                       ; Library ;
-+----------------------------------+-----------------+-----------------+--------------------------------------------------------------------+---------+
-; ula.vhd                          ; yes             ; User VHDL File  ; F:/Victor/aula/arqcomp/micro-processor/plaquinha/ula.vhd           ;         ;
-; uc.vhd                           ; yes             ; User VHDL File  ; F:/Victor/aula/arqcomp/micro-processor/plaquinha/uc.vhd            ;         ;
-; toplevel.vhd                     ; yes             ; User VHDL File  ; F:/Victor/aula/arqcomp/micro-processor/plaquinha/toplevel.vhd      ;         ;
-; state_machine.vhd                ; yes             ; User VHDL File  ; F:/Victor/aula/arqcomp/micro-processor/plaquinha/state_machine.vhd ;         ;
-; rom.vhd                          ; yes             ; User VHDL File  ; F:/Victor/aula/arqcomp/micro-processor/plaquinha/rom.vhd           ;         ;
-; reg_16bits.vhd                   ; yes             ; User VHDL File  ; F:/Victor/aula/arqcomp/micro-processor/plaquinha/reg_16bits.vhd    ;         ;
-; ram.vhd                          ; yes             ; User VHDL File  ; F:/Victor/aula/arqcomp/micro-processor/plaquinha/ram.vhd           ;         ;
-; pc.vhd                           ; yes             ; User VHDL File  ; F:/Victor/aula/arqcomp/micro-processor/plaquinha/pc.vhd            ;         ;
-; banco_regs.vhd                   ; yes             ; User VHDL File  ; F:/Victor/aula/arqcomp/micro-processor/plaquinha/banco_regs.vhd    ;         ;
-; plaquinha.vhd                    ; yes             ; User VHDL File  ; F:/Victor/aula/arqcomp/micro-processor/plaquinha/plaquinha.vhd     ;         ;
-+----------------------------------+-----------------+-----------------+--------------------------------------------------------------------+---------+
++--------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                 ;
++----------------------------------+-----------------+-----------------+-----------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                                          ; Library ;
++----------------------------------+-----------------+-----------------+-----------------------------------------------------------------------+---------+
+; ula.vhd                          ; yes             ; User VHDL File  ; F:/Victor/aula/arqcomp/micro-processor/plaquinha/ula.vhd              ;         ;
+; uc.vhd                           ; yes             ; User VHDL File  ; F:/Victor/aula/arqcomp/micro-processor/plaquinha/uc.vhd               ;         ;
+; toplevel.vhd                     ; yes             ; User VHDL File  ; F:/Victor/aula/arqcomp/micro-processor/plaquinha/toplevel.vhd         ;         ;
+; Timing_Reference.vhd             ; yes             ; User VHDL File  ; F:/Victor/aula/arqcomp/micro-processor/plaquinha/Timing_Reference.vhd ;         ;
+; state_machine.vhd                ; yes             ; User VHDL File  ; F:/Victor/aula/arqcomp/micro-processor/plaquinha/state_machine.vhd    ;         ;
+; rom.vhd                          ; yes             ; User VHDL File  ; F:/Victor/aula/arqcomp/micro-processor/plaquinha/rom.vhd              ;         ;
+; reg_16bits.vhd                   ; yes             ; User VHDL File  ; F:/Victor/aula/arqcomp/micro-processor/plaquinha/reg_16bits.vhd       ;         ;
+; ram.vhd                          ; yes             ; User VHDL File  ; F:/Victor/aula/arqcomp/micro-processor/plaquinha/ram.vhd              ;         ;
+; pc.vhd                           ; yes             ; User VHDL File  ; F:/Victor/aula/arqcomp/micro-processor/plaquinha/pc.vhd               ;         ;
+; HexTo7Seg.vhd                    ; yes             ; User VHDL File  ; F:/Victor/aula/arqcomp/micro-processor/plaquinha/HexTo7Seg.vhd        ;         ;
+; banco_regs.vhd                   ; yes             ; User VHDL File  ; F:/Victor/aula/arqcomp/micro-processor/plaquinha/banco_regs.vhd       ;         ;
+; plaquinha.vhd                    ; yes             ; User VHDL File  ; F:/Victor/aula/arqcomp/micro-processor/plaquinha/plaquinha.vhd        ;         ;
++----------------------------------+-----------------+-----------------+-----------------------------------------------------------------------+---------+
 
 
-+---------------------------------------------------------+
-; Analysis & Synthesis Resource Usage Summary             ;
-+---------------------------------------------+-----------+
-; Resource                                    ; Usage     ;
-+---------------------------------------------+-----------+
-; Estimated Total logic elements              ; 7,373     ;
-;                                             ;           ;
-; Total combinational functions               ; 3245      ;
-; Logic element usage by number of LUT inputs ;           ;
-;     -- 4 input functions                    ; 2848      ;
-;     -- 3 input functions                    ; 372       ;
-;     -- <=2 input functions                  ; 25        ;
-;                                             ;           ;
-; Logic elements by mode                      ;           ;
-;     -- normal mode                          ; 3184      ;
-;     -- arithmetic mode                      ; 61        ;
-;                                             ;           ;
-; Total registers                             ; 4200      ;
-;     -- Dedicated logic registers            ; 4200      ;
-;     -- I/O registers                        ; 0         ;
-;                                             ;           ;
-; I/O pins                                    ; 34        ;
-;                                             ;           ;
-; Embedded Multiplier 9-bit elements          ; 0         ;
-;                                             ;           ;
-; Maximum fan-out node                        ; clk~input ;
-; Maximum fan-out                             ; 4200      ;
-; Total fan-out                               ; 29466     ;
-; Average fan-out                             ; 3.92      ;
-+---------------------------------------------+-----------+
++--------------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary                  ;
++---------------------------------------------+----------------+
+; Resource                                    ; Usage          ;
++---------------------------------------------+----------------+
+; Estimated Total logic elements              ; 7,402          ;
+;                                             ;                ;
+; Total combinational functions               ; 3274           ;
+; Logic element usage by number of LUT inputs ;                ;
+;     -- 4 input functions                    ; 2876           ;
+;     -- 3 input functions                    ; 373            ;
+;     -- <=2 input functions                  ; 25             ;
+;                                             ;                ;
+; Logic elements by mode                      ;                ;
+;     -- normal mode                          ; 3213           ;
+;     -- arithmetic mode                      ; 61             ;
+;                                             ;                ;
+; Total registers                             ; 4200           ;
+;     -- Dedicated logic registers            ; 4200           ;
+;     -- I/O registers                        ; 0              ;
+;                                             ;                ;
+; I/O pins                                    ; 64             ;
+;                                             ;                ;
+; Embedded Multiplier 9-bit elements          ; 0              ;
+;                                             ;                ;
+; Maximum fan-out node                        ; selected_clock ;
+; Maximum fan-out                             ; 4200           ;
+; Total fan-out                               ; 29639          ;
+; Average fan-out                             ; 3.90           ;
++---------------------------------------------+----------------+
 
 
 +--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -227,7 +230,11 @@ https://fpgasoftware.intel.com/eula.
 +-------------------------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+------------------------------------------------------------------------+---------------+--------------+
 ; Compilation Hierarchy Node                ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; UFM Blocks ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; ADC blocks ; Full Hierarchy Name                                                    ; Entity Name   ; Library Name ;
 +-------------------------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+------------------------------------------------------------------------+---------------+--------------+
-; |plaquinha                                ; 3245 (0)            ; 4200 (0)                  ; 0           ; 0          ; 0            ; 0       ; 0         ; 34   ; 0            ; 0          ; |plaquinha                                                             ; plaquinha     ; work         ;
+; |plaquinha                                ; 3274 (1)            ; 4200 (0)                  ; 0           ; 0          ; 0            ; 0       ; 0         ; 64   ; 0            ; 0          ; |plaquinha                                                             ; plaquinha     ; work         ;
+;    |HexTo7Seg:reg_a_high_conv|            ; 7 (7)               ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |plaquinha|HexTo7Seg:reg_a_high_conv                                   ; HexTo7Seg     ; work         ;
+;    |HexTo7Seg:reg_a_low_conv|             ; 7 (7)               ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |plaquinha|HexTo7Seg:reg_a_low_conv                                    ; HexTo7Seg     ; work         ;
+;    |HexTo7Seg:reg_b_high_conv|            ; 7 (7)               ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |plaquinha|HexTo7Seg:reg_b_high_conv                                   ; HexTo7Seg     ; work         ;
+;    |HexTo7Seg:reg_b_low_conv|             ; 7 (7)               ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |plaquinha|HexTo7Seg:reg_b_low_conv                                    ; HexTo7Seg     ; work         ;
 ;    |toplevel:up|                          ; 3245 (2754)         ; 4200 (0)                  ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |plaquinha|toplevel:up                                                 ; toplevel      ; work         ;
 ;       |banco_regs:banco_u|                ; 36 (36)             ; 64 (16)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |plaquinha|toplevel:up|banco_regs:banco_u                              ; banco_regs    ; work         ;
 ;          |reg_16bits:\gen_regs:1:reg_i|   ; 0 (0)               ; 16 (16)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |plaquinha|toplevel:up|banco_regs:banco_u|reg_16bits:\gen_regs:1:reg_i ; reg_16bits    ; work         ;
@@ -238,8 +245,8 @@ https://fpgasoftware.intel.com/eula.
 ;       |reg_16bits:accumulator_u|          ; 0 (0)               ; 16 (16)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |plaquinha|toplevel:up|reg_16bits:accumulator_u                        ; reg_16bits    ; work         ;
 ;       |reg_16bits:instruction_register_u| ; 0 (0)               ; 12 (12)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |plaquinha|toplevel:up|reg_16bits:instruction_register_u               ; reg_16bits    ; work         ;
 ;       |rom:rom_u|                         ; 33 (33)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |plaquinha|toplevel:up|rom:rom_u                                       ; rom           ; work         ;
-;       |uc:uc_u|                           ; 44 (44)             ; 4 (2)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |plaquinha|toplevel:up|uc:uc_u                                         ; uc            ; work         ;
-;          |state_machine:uut1|             ; 0 (0)               ; 2 (2)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |plaquinha|toplevel:up|uc:uc_u|state_machine:uut1                      ; state_machine ; work         ;
+;       |uc:uc_u|                           ; 44 (43)             ; 4 (2)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |plaquinha|toplevel:up|uc:uc_u                                         ; uc            ; work         ;
+;          |state_machine:uut1|             ; 1 (1)               ; 2 (2)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |plaquinha|toplevel:up|uc:uc_u|state_machine:uut1                      ; state_machine ; work         ;
 ;       |ula:ula_u|                         ; 88 (88)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |plaquinha|toplevel:up|ula:ula_u                                       ; ula           ; work         ;
 +-------------------------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+------------------------------------------------------------------------+---------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
@@ -354,14 +361,23 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------------+
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                              ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------------+
-; 4:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; Yes        ; |plaquinha|toplevel:up|banco_regs:banco_u|out_signal[7] ;
-; 257:1              ; 16 bits   ; 2736 LEs      ; 2736 LEs             ; 0 LEs                  ; Yes        ; |plaquinha|toplevel:up|reg_16bits:accumulator_u|data[0] ;
+; 4:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; Yes        ; |plaquinha|toplevel:up|banco_regs:banco_u|out_signal[9] ;
+; 257:1              ; 16 bits   ; 2736 LEs      ; 2736 LEs             ; 0 LEs                  ; Yes        ; |plaquinha|toplevel:up|reg_16bits:accumulator_u|data[3] ;
 ; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |plaquinha|toplevel:up|uc:uc_u|Mux41                    ;
-; 4:1                ; 15 bits   ; 30 LEs        ; 30 LEs               ; 0 LEs                  ; No         ; |plaquinha|toplevel:up|ula:ula_u|result[10]             ;
+; 4:1                ; 15 bits   ; 30 LEs        ; 30 LEs               ; 0 LEs                  ; No         ; |plaquinha|toplevel:up|ula:ula_u|result[1]              ;
 ; 14:1               ; 2 bits    ; 18 LEs        ; 2 LEs                ; 16 LEs                 ; No         ; |plaquinha|toplevel:up|uc:uc_u|Mux32                    ;
 ; 13:1               ; 2 bits    ; 16 LEs        ; 2 LEs                ; 14 LEs                 ; No         ; |plaquinha|toplevel:up|uc:uc_u|Mux28                    ;
 ; 15:1               ; 4 bits    ; 40 LEs        ; 8 LEs                ; 32 LEs                 ; No         ; |plaquinha|toplevel:up|ula_in_y_s[3]                    ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "Timing_Reference:clock_divider"                                                        ;
++---------+--------+----------+-------------------------------------------------------------------------------------+
+; Port    ; Type   ; Severity ; Details                                                                             ;
++---------+--------+----------+-------------------------------------------------------------------------------------+
+; clk_xhz ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++---------+--------+----------+-------------------------------------------------------------------------------------+
 
 
 +-----------------------------------------------------------------------------+
@@ -387,24 +403,24 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +-----------------------+-----------------------------+
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
-; boundary_port         ; 34                          ;
+; boundary_port         ; 64                          ;
 ; cycloneiii_ff         ; 4200                        ;
 ;     CLR               ; 2                           ;
 ;     CLR SCLR SLD      ; 16                          ;
 ;     ENA CLR           ; 4174                        ;
 ;     ENA CLR SLD       ; 8                           ;
-; cycloneiii_lcell_comb ; 3245                        ;
+; cycloneiii_lcell_comb ; 3274                        ;
 ;     arith             ; 61                          ;
 ;         2 data inputs ; 1                           ;
 ;         3 data inputs ; 60                          ;
-;     normal            ; 3184                        ;
+;     normal            ; 3213                        ;
 ;         0 data inputs ; 2                           ;
 ;         2 data inputs ; 22                          ;
-;         3 data inputs ; 312                         ;
-;         4 data inputs ; 2848                        ;
+;         3 data inputs ; 313                         ;
+;         4 data inputs ; 2876                        ;
 ;                       ;                             ;
 ; Max LUT depth         ; 9.80                        ;
-; Average LUT depth     ; 7.04                        ;
+; Average LUT depth     ; 7.01                        ;
 +-----------------------+-----------------------------+
 
 
@@ -413,7 +429,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:09     ;
+; Top            ; 00:00:10     ;
 +----------------+--------------+
 
 
@@ -423,7 +439,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 21.1.1 Build 850 06/23/2022 SJ Lite Edition
-    Info: Processing started: Fri Jun 30 19:08:36 2023
+    Info: Processing started: Sun Jul  2 12:27:39 2023
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off plaquinha -c plaquinha
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
@@ -461,10 +477,11 @@ Info (12021): Found 2 design units, including 1 entities, in source file banco_r
     Info (12022): Found design unit 1: banco_regs-arch_banco_regs File: F:/Victor/aula/arqcomp/micro-processor/plaquinha/banco_regs.vhd Line: 22
     Info (12023): Found entity 1: banco_regs File: F:/Victor/aula/arqcomp/micro-processor/plaquinha/banco_regs.vhd Line: 5
 Info (12021): Found 2 design units, including 1 entities, in source file plaquinha.vhd
-    Info (12022): Found design unit 1: plaquinha-arq_plaq File: F:/Victor/aula/arqcomp/micro-processor/plaquinha/plaquinha.vhd Line: 16
+    Info (12022): Found design unit 1: plaquinha-arq_plaq File: F:/Victor/aula/arqcomp/micro-processor/plaquinha/plaquinha.vhd Line: 23
     Info (12023): Found entity 1: plaquinha File: F:/Victor/aula/arqcomp/micro-processor/plaquinha/plaquinha.vhd Line: 5
 Info (12127): Elaborating entity "plaquinha" for the top level hierarchy
-Info (12128): Elaborating entity "toplevel" for hierarchy "toplevel:up" File: F:/Victor/aula/arqcomp/micro-processor/plaquinha/plaquinha.vhd Line: 33
+Warning (10036): Verilog HDL or VHDL warning at plaquinha.vhd(53): object "divided_clock" assigned a value but never read File: F:/Victor/aula/arqcomp/micro-processor/plaquinha/plaquinha.vhd Line: 53
+Info (12128): Elaborating entity "toplevel" for hierarchy "toplevel:up" File: F:/Victor/aula/arqcomp/micro-processor/plaquinha/plaquinha.vhd Line: 58
 Warning (10036): Verilog HDL or VHDL warning at toplevel.vhd(108): object "state_DEBUG_s" assigned a value but never read File: F:/Victor/aula/arqcomp/micro-processor/plaquinha/toplevel.vhd Line: 108
 Info (12128): Elaborating entity "rom" for hierarchy "toplevel:up|rom:rom_u" File: F:/Victor/aula/arqcomp/micro-processor/plaquinha/toplevel.vhd Line: 124
 Info (12128): Elaborating entity "reg_16bits" for hierarchy "toplevel:up|reg_16bits:instruction_register_u" File: F:/Victor/aula/arqcomp/micro-processor/plaquinha/toplevel.vhd Line: 129
@@ -492,17 +509,22 @@ Info (12128): Elaborating entity "state_machine" for hierarchy "toplevel:up|uc:u
 Info (12128): Elaborating entity "ula" for hierarchy "toplevel:up|ula:ula_u" File: F:/Victor/aula/arqcomp/micro-processor/plaquinha/toplevel.vhd Line: 181
 Info (12128): Elaborating entity "banco_regs" for hierarchy "toplevel:up|banco_regs:banco_u" File: F:/Victor/aula/arqcomp/micro-processor/plaquinha/toplevel.vhd Line: 190
 Info (12128): Elaborating entity "ram" for hierarchy "toplevel:up|ram:ram_u" File: F:/Victor/aula/arqcomp/micro-processor/plaquinha/toplevel.vhd Line: 200
+Info (12128): Elaborating entity "Timing_Reference" for hierarchy "Timing_Reference:clock_divider" File: F:/Victor/aula/arqcomp/micro-processor/plaquinha/plaquinha.vhd Line: 66
+Warning (10492): VHDL Process Statement warning at Timing_Reference.vhd(28): signal "tmp" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: F:/Victor/aula/arqcomp/micro-processor/plaquinha/Timing_Reference.vhd Line: 28
+Info (12128): Elaborating entity "HexTo7Seg" for hierarchy "HexTo7Seg:reg_a_low_conv" File: F:/Victor/aula/arqcomp/micro-processor/plaquinha/plaquinha.vhd Line: 71
+Warning (19016): Clock multiplexers are found and protected
+    Warning (19017): Found clock multiplexer selected_clock~0 File: F:/Victor/aula/arqcomp/micro-processor/plaquinha/plaquinha.vhd Line: 54
 Info (286030): Timing-Driven Synthesis is running
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 7424 device resources after synthesis - the final resource count might be different
-    Info (21058): Implemented 2 input pins
-    Info (21059): Implemented 32 output pins
-    Info (21061): Implemented 7390 logic cells
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 20 warnings
-    Info: Peak virtual memory: 4841 megabytes
-    Info: Processing ended: Fri Jun 30 19:08:57 2023
-    Info: Elapsed time: 00:00:21
-    Info: Total CPU time (on all processors): 00:00:29
+Info (21057): Implemented 7483 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 4 input pins
+    Info (21059): Implemented 60 output pins
+    Info (21061): Implemented 7419 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 24 warnings
+    Info: Peak virtual memory: 4836 megabytes
+    Info: Processing ended: Sun Jul  2 12:28:01 2023
+    Info: Elapsed time: 00:00:22
+    Info: Total CPU time (on all processors): 00:00:31
 
 
